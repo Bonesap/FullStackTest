@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { loginSchema } from '../validation/login.ts'
 import { Input } from '../components/common/Input.tsx'
+import { useNavigate } from 'react-router-dom'
 
 export interface LoginFormData {
   email: string;
@@ -9,12 +10,14 @@ export interface LoginFormData {
 }
 
 const LoginPage = () => {
+  const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors } } = useForm<LoginFormData>({
     resolver: yupResolver(loginSchema)
   })
 
   const onSubmit = (data: LoginFormData) => {
     console.log(data)
+    navigate('/dashboard')
   }
 
   return (
