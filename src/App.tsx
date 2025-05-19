@@ -3,7 +3,7 @@ import LoginPage from './pages/LoginPage'
 import { Navigate, Routes, BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css'
 import DashboardPage from './pages/DashboardPage'
-
+import { ROUTES } from './constants/Routes'
 function App() {
 
   return (
@@ -11,9 +11,9 @@ function App() {
 
       <Router>
         <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="*" element={<Navigate to="/login" replace />} />
+          <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+          <Route path={ROUTES.DASHBOARD} element={<DashboardPage />} />
+          <Route path={ROUTES.ANY} element={<Navigate to={ROUTES.LOGIN} replace />} />
         </Routes>
       </Router>
     </>

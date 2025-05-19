@@ -1,5 +1,7 @@
 import type { InvestorData } from '../../types/types';   
-
+import { InvestmentTableRow } from './InvestmentTableRow';
+import { TableHeaderRow } from './TableHeaderRow';
+import { TableHeaderCell } from './TableHeaderCell';
 
 export const Table = ({investorData}: {investorData: InvestorData}) => {
   return (
@@ -9,33 +11,18 @@ export const Table = ({investorData}: {investorData: InvestorData}) => {
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-300">
           <thead className="bg-gray-50">
-            <tr>
-              <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Project</th>
-              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Token Class</th>
-              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Shares</th>
-              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Market Value</th>
-              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">ROI</th>
-              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Next Distribution</th>
-            </tr>
+            <TableHeaderRow>
+              <TableHeaderCell isFirst>Project</TableHeaderCell>
+              <TableHeaderCell>Token Class</TableHeaderCell>
+              <TableHeaderCell>Shares</TableHeaderCell>
+              <TableHeaderCell>Market Value</TableHeaderCell>
+              <TableHeaderCell>ROI</TableHeaderCell>
+              <TableHeaderCell>Next Distribution</TableHeaderCell>
+            </TableHeaderRow>
           </thead>
           <tbody className="divide-y divide-gray-200 bg-white">
             {investorData.investments.map((investment) => (
-              <tr key={investment.id}>
-                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                  {investment.project_name}
-                </td>
-                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{investment.token_class}</td>
-                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{investment.shares_owned}</td>
-                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">${investment.market_value.toLocaleString()}</td>
-                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{investment.roi_percent}%</td>
-                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                  {new Date(investment.next_distribution_date).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric'
-                  })}
-                </td>
-              </tr>
+              <InvestmentTableRow key={investment.id} investment={investment} />
             ))}
           </tbody>
         </table>

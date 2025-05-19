@@ -1,3 +1,6 @@
+import type { UseFormRegister, FieldErrors } from 'react-hook-form';
+import type { LoginFormData } from '../pages/LoginPage';
+
 export interface Investment {
   id: string;
   project_name: string;
@@ -19,4 +22,11 @@ export interface InvestorSummary {
 export interface InvestorData {
   investor_summary: InvestorSummary;
   investments: Investment[];
+}
+export interface InputProps {
+  register: UseFormRegister<LoginFormData>, 
+  errors: FieldErrors<LoginFormData>, 
+  placeholder: string, 
+  type: string,
+  name?: string
 }
