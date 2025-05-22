@@ -8,7 +8,6 @@ function App() {
 
   return (
     <>
-
       <Router>
         <Routes>
           <Route path={ROUTES.LOGIN} element={<LoginPage />} />

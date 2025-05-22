@@ -15,12 +15,16 @@ export const InvestmentTableRow = ({ investment }: InvestmentTableRowProps) => {
       <TableData data={investment.shares_owned.toString()} />
       <TableData data={`$${investment.market_value.toLocaleString()}`} />
       <TableData data={`${investment.roi_percent}%`} />
-      <TableData data={new Date(investment.next_distribution_date).toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'short',   
-          day: 'numeric'
-        })}
+      <TableData
+        data={new Date(investment.next_distribution_date).toLocaleDateString(
+          'en-US',
+          {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+          }
+        )}
       />
     </TableRow>
   );
-}; 
+};
